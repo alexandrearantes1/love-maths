@@ -11,6 +11,11 @@ window.addEventListener("load", function () {
          }
       });
    }
+   document.getElementById('answer-box').addEventListener('keydown', function (event) {
+      if (event.key === 'Enter') {
+         checkAnswer();
+      }
+   })
 });
 
 function runGame (gameType) {
@@ -112,7 +117,6 @@ function displaySubtractQuestion (operand1, operand2) {
    } else {
       populateSpans("-", operand1, operand2);
    }
-   
 }
 
 function displayMultiplyQuestion (operand1, operand2) {
