@@ -38,7 +38,7 @@ function runGame (gameType) {
          break;
       
       case 'division':
-         displayDivisionQuestion(num1, num2);
+         displayDivisionQuestion(num1*num2, num2);
          break; 
    }
 }
@@ -72,7 +72,7 @@ function calculateCorrectAnswer () {
       case 'x': 
          return [operand1 * operand2, 'multiplication'];
       case '/': 
-         return [operand1 / operand2, 'division'];
+         return [Math.floor(operand1 / operand2), 'division'];
       default:
          alert(`Unimplemented operator ${operator}`);
          throw `Unimplemented operator ${operator}. Aborting!`;      
@@ -112,7 +112,7 @@ function displayAdditionQuestion (operand1, operand2) {
 }
 
 function displaySubtractQuestion (operand1, operand2) {
-   if(operand1 < 2) {
+   if(operand1 < operand2) {
       populateSpans("-", operand2, operand1);   
    } else {
       populateSpans("-", operand1, operand2);
@@ -124,5 +124,9 @@ function displayMultiplyQuestion (operand1, operand2) {
 }
 
 function displayDivisionQuestion (operand1, operand2) {
-   populateSpans("/", operand1, operand2);
+   if(operand1 < operand2) {
+      populateSpans("/", operand2, operand1);   
+   } else {
+      populateSpans("/", operand1, operand2);
+   }
 }
